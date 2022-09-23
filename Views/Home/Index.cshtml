@@ -1,0 +1,31 @@
+﻿@model eTickets.ViewModel.ContriesViewModel
+
+@{
+    ViewData["title"] = "Index";
+}
+<label asp-for="CountryName" Country_Name"></label>
+
+<select id="id" name="countrylist" asp-for="CountryId" asp-items='@Model.cotries'>
+    <option>select country name</option>
+</select>
+@*@Html.DropDownListFor(m=>m.Country_Name,ViewBag.Countries,"Select Count")*@
+
+  <select id="state_id" name="statelist" asp-for="CountryName" asp-items='@Model.cotries'>
+    <option>select state name</option>
+</select>
+<script>
+$("#country_id").change(function() {
+    var url = '@Url.Content("~/")' + "Home/getstatebyid";
+    var ddlsource = "#country_id";
+    $.getjson(url, { id: $(ddlsource).val() }, function(date) {
+        var items = '';
+        $("state_id").empty();
+        $.each(data, function(i, row)){
+            items += "<option value='" + row.value + "'>" + row.text + "</option>";
+        });
+    $("#state_id").html(items);
+    })
+
+});
+   });
+</script>
