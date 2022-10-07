@@ -17,7 +17,6 @@ builder.Services.AddMemoryCache();
 
 
 
-// Add services to the container.
 
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -36,10 +35,15 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 builder.Services.AddControllersWithViews();
 
+
+
 builder.Services.AddScoped<IActorService, ActorsService>();
 
 
+
+
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

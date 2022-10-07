@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eTickets.Data;
 
@@ -11,9 +12,11 @@ using eTickets.Data;
 namespace eTickets.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220929050641_hell")]
+    partial class hell
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -130,6 +133,9 @@ namespace eTickets.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
                     b.Property<int>("StateId")
                         .HasColumnType("int");
 
@@ -178,9 +184,6 @@ namespace eTickets.Migrations
 
                     b.Property<int?>("MovieCategoryId")
                         .HasColumnType("int");
-
-                    b.Property<bool>("Movies")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -242,11 +245,11 @@ namespace eTickets.Migrations
 
             modelBuilder.Entity("eTickets.Models.State", b =>
                 {
-                    b.Property<int>("StateId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StateId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Country_id")
                         .HasColumnType("int");
@@ -255,7 +258,7 @@ namespace eTickets.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("StateId");
+                    b.HasKey("Id");
 
                     b.HasIndex("Country_id");
 
@@ -299,7 +302,7 @@ namespace eTickets.Migrations
             modelBuilder.Entity("eTickets.Models.City", b =>
                 {
                     b.HasOne("eTickets.Models.State", "State")
-                        .WithMany("Cities")
+                        .WithMany()
                         .HasForeignKey("StateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -361,11 +364,6 @@ namespace eTickets.Migrations
             modelBuilder.Entity("eTickets.Models.Producer", b =>
                 {
                     b.Navigation("Movies");
-                });
-
-            modelBuilder.Entity("eTickets.Models.State", b =>
-                {
-                    b.Navigation("Cities");
                 });
 #pragma warning restore 612, 618
         }

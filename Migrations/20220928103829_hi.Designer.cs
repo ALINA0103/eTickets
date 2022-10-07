@@ -12,8 +12,8 @@ using eTickets.Data;
 namespace eTickets.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220923111550_secondd")]
-    partial class secondd
+    [Migration("20220928103829_hi")]
+    partial class hi
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -119,6 +119,26 @@ namespace eTickets.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Cinemas");
+                });
+
+            modelBuilder.Entity("eTickets.Models.City", b =>
+                {
+                    b.Property<int>("CityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CityId"));
+
+                    b.Property<string>("CityName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StateId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CityId");
+
+                    b.ToTable("Cities");
                 });
 
             modelBuilder.Entity("eTickets.Models.Country", b =>

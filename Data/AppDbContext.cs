@@ -1,17 +1,21 @@
-﻿using eTickets.Models;
+﻿using eTickets.Controllers;
+using eTickets.Models;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace eTickets.Data
 {
     public class AppDbContext : DbContext
     {
-        
 
+        public AppDbContext()
+        {
+
+        }
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
             
         }
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -28,6 +32,7 @@ namespace eTickets.Data
             //base.OnModelCreating(modelBuilder);
         }
 
+       
         public DbSet<Actor> Actors { get; set; }
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Actor_Movie> Actors_Movies { get; set; }
@@ -36,7 +41,11 @@ namespace eTickets.Data
         public DbSet<AdminLogin> AdminLogins { get; set; }
         public DbSet<State> States { get; set; }
         public DbSet<Country> Countries { get; set; }
+        public DbSet<City> Cities { get; set; }
 
-      
+        internal Task GetAllAsync(Func<object, object> value)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

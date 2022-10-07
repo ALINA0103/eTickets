@@ -12,8 +12,8 @@ using eTickets.Data;
 namespace eTickets.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220923093600_initital")]
-    partial class initital
+    [Migration("20220928113624_li")]
+    partial class li
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -119,6 +119,26 @@ namespace eTickets.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Cinemas");
+                });
+
+            modelBuilder.Entity("eTickets.Models.City", b =>
+                {
+                    b.Property<int>("CityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CityId"));
+
+                    b.Property<string>("CityName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StateId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CityId");
+
+                    b.ToTable("Cities");
                 });
 
             modelBuilder.Entity("eTickets.Models.Country", b =>
@@ -302,7 +322,7 @@ namespace eTickets.Migrations
             modelBuilder.Entity("eTickets.Models.State", b =>
                 {
                     b.HasOne("eTickets.Models.Country", "Country")
-                        .WithMany()
+                        .WithMany("States")
                         .HasForeignKey("Country_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -313,6 +333,11 @@ namespace eTickets.Migrations
             modelBuilder.Entity("eTickets.Models.Cinema", b =>
                 {
                     b.Navigation("Movies");
+                });
+
+            modelBuilder.Entity("eTickets.Models.Country", b =>
+                {
+                    b.Navigation("States");
                 });
 
             modelBuilder.Entity("eTickets.Models.MovieCategory", b =>

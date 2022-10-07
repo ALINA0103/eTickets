@@ -5,10 +5,7 @@ namespace eTickets.Models
 {
     public partial class Producer
     {
-        public Producer()
-        {
-            Movies = new HashSet<Movie>();
-        }
+        
 
         public int Id { get; set; }
         public string? ProfilePictureUrl { get; set; }

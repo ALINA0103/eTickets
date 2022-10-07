@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace eTickets.Models
 {
@@ -6,10 +8,15 @@ namespace eTickets.Models
     {
         [Key]
         
-            public int Id { get; set; }
+            public int StateId { get; set; }
             public string StateName { get; set; }
-            public int CountryId { get; set; }
+
+            [ForeignKey("Country_id")]
+            public int Country_id { get; set; }
             public virtual Country Country { get; set; }
-        
+            [ForeignKey("StateId")]
+            public ICollection<City> Cities { get; set; }
+
+
     }
 }

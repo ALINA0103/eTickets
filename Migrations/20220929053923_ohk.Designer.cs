@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eTickets.Data;
 
@@ -11,9 +12,11 @@ using eTickets.Data;
 namespace eTickets.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220929053923_ohk")]
+    partial class ohk
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -179,9 +182,6 @@ namespace eTickets.Migrations
                     b.Property<int?>("MovieCategoryId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("Movies")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -299,7 +299,7 @@ namespace eTickets.Migrations
             modelBuilder.Entity("eTickets.Models.City", b =>
                 {
                     b.HasOne("eTickets.Models.State", "State")
-                        .WithMany("Cities")
+                        .WithMany()
                         .HasForeignKey("StateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -361,11 +361,6 @@ namespace eTickets.Migrations
             modelBuilder.Entity("eTickets.Models.Producer", b =>
                 {
                     b.Navigation("Movies");
-                });
-
-            modelBuilder.Entity("eTickets.Models.State", b =>
-                {
-                    b.Navigation("Cities");
                 });
 #pragma warning restore 612, 618
         }

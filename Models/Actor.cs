@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace eTickets.Models
 {
@@ -14,7 +15,8 @@ namespace eTickets.Models
         public string ProfilePictureUrl { get; set; } = null!;
         public string? FullName { get; set; }
         public string? Bio { get; set; }
-
+        public List<Actor_Movie> Actors_Movies { get; set; }
         public virtual ICollection<Movie> Movies { get; set; }
+        
     }
 }

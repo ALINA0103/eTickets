@@ -59,7 +59,7 @@
 
 //                   });
 
-//                    context.SaveChanges();    
+//                    context.SaveChanges();
 
 //                }
 //                //Actor
@@ -71,35 +71,35 @@
 //                        {
 //                            FullName = "Actor 1",
 //                            Bio = "This is the bio for first actor",
-//                            ProfilePictureURL = "http://dotnethow.net/images/actors/actor-1.jpeg"
+//                            ProfilePictureUrl = "http://dotnethow.net/images/actors/actor-1.jpeg"
 
 //                        },
 //                         new Actor()
 //                        {
 //                            FullName = "Actor 2",
 //                            Bio = "This is the bio for second actor",
-//                            ProfilePictureURL = "http://dotnethow.net/images/actors/actor-2.jpeg"
+//                            ProfilePictureUrl = "http://dotnethow.net/images/actors/actor-2.jpeg"
 
 //                        },
 //                          new Actor()
 //                        {
 //                            FullName = "Actor 3",
 //                            Bio = "This is the bio for third actor",
-//                            ProfilePictureURL = "http://dotnethow.net/images/actors/actor-3.jpeg"
+//                            ProfilePictureUrl= "http://dotnethow.net/images/actors/actor-3.jpeg"
 
 //                        },
 //                         new Actor()
 //                        {
 //                            FullName = "Actor 4",
 //                            Bio = "This is the bio for forth actor",
-//                            ProfilePictureURL = "http://dotnethow.net/images/actors/actor-4.jpeg"
+//                            ProfilePictureUrl = "http://dotnethow.net/images/actors/actor-4.jpeg"
 
 //                        },
 //                          new Actor()
 //                        {
 //                            FullName = "Actor 5",
 //                            Bio = "This is the bio for fifth actor",
-//                            ProfilePictureURL = "http://dotnethow.net/images/actors/actor-5.jpeg"
+//                            ProfilePictureUrl = "http://dotnethow.net/images/actors/actor-5.jpeg"
 
 //                        },
 
@@ -116,35 +116,35 @@
 //                        {
 //                            FullName = "Producer 1",
 //                            Bio = "This is the bio for first Producer",
-//                            ProfilePictureURL = "http://dotnethow.net/images/producers/producer-1.jpeg"
+//                            ProfilePictureUrl = "http://dotnethow.net/images/producers/producer-1.jpeg"
 
 //                        },
 //                         new Producer()
 //                        {
 //                            FullName = "Producer 2",
 //                            Bio = "This is the bio for second Producer",
-//                            ProfilePictureURL = "http://dotnethow.net/images/producers/producer-2.jpeg"
+//                            ProfilePictureUrl = "http://dotnethow.net/images/producers/producer-2.jpeg"
 
 //                        },
 //                          new Producer()
 //                        {
 //                            FullName = "Producer 3",
 //                            Bio = "This is the bio for third Producer",
-//                            ProfilePictureURL = "http://dotnethow.net/images/producers/producer-3.jpeg"
+//                            ProfilePictureUrl = "http://dotnethow.net/images/producers/producer-3.jpeg"
 
 //                        },
 //                         new Producer()
 //                        {
 //                            FullName = "Producer 4",
 //                            Bio = "This is the bio for forth Producer",
-//                            ProfilePictureURL = "http://dotnethow.net/images/producers/producer-4.jpeg"
+//                            ProfilePictureUrl = "http://dotnethow.net/images/producers/producer-4.jpeg"
 
 //                        },
 //                          new Producer()
 //                        {
 //                            FullName = "Producer 5",
 //                            Bio = "This is the bio for fifth Producer",
-//                            ProfilePictureURL = "http://dotnethow.net/images/producers/producer-5.jpeg"
+//                            ProfilePictureUrl = "http://dotnethow.net/images/producers/producer-5.jpeg"
 
 //                        },
 
@@ -162,24 +162,24 @@
 //                            Name = "Life",
 //                            Description = "This is a life movie description",
 //                            Price = 750,
-//                            ImageURL = "http://dotnethow.net/images/movies/movie-1.jpeg",
+//                            ImageUrl = "http://dotnethow.net/images/movies/movie-1.jpeg",
 //                            StartDate = DateTime.Now.AddDays(-10),
 //                            EndDate = DateTime.Now.AddDays(10),
 //                            CinemaId = 2,
 //                            ProducerId = 2,
-//                            MovieCategory = MovieCategory.Documentory
+                            
 //                        },
 //                         new Movie()
 //                        {
 //                            Name = "Scoop",
 //                            Description = "This is the Scoop movie description",
 //                            Price = 650,
-//                            ImageURL = "http://dotnethow.net/images/movies/movie-2.jpeg",
+//                            ImageUrl = "http://dotnethow.net/images/movies/movie-2.jpeg",
 //                            StartDate = DateTime.Now.AddDays(-10),
 //                            EndDate = DateTime.Now.AddDays(10),
 //                            CinemaId = 3,
 //                            ProducerId = 3,
-//                            MovieCategory = MovieCategory.Comedy
+                            
 //                        },
 
 //                           new Movie()
@@ -187,12 +187,12 @@
 //                            Name = "Ghost",
 //                            Description = "This is the ghost movie description",
 //                            Price = 850,
-//                            ImageURL = "http://dotnethow.net/images/movies/movie-3.jpeg",
+//                            ImageUrl = "http://dotnethow.net/images/movies/movie-3.jpeg",
 //                            StartDate = DateTime.Now.AddDays(-10),
 //                            EndDate = DateTime.Now.AddDays(10),
 //                            CinemaId = 4,
 //                            ProducerId = 4,
-//                            MovieCategory = MovieCategory.Horror
+                            
 //                        },
 
 

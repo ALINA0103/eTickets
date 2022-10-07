@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace eTickets.Migrations
 {
     /// <inheritdoc />
-    public partial class initital : Migration
+    public partial class hi : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -53,6 +53,20 @@ namespace eTickets.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cinemas", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Cities",
+                columns: table => new
+                {
+                    CityId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StateId = table.Column<int>(type: "int", nullable: false),
+                    CityName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cities", x => x.CityId);
                 });
 
             migrationBuilder.CreateTable(
@@ -243,6 +257,9 @@ namespace eTickets.Migrations
 
             migrationBuilder.DropTable(
                 name: "AdminLogins");
+
+            migrationBuilder.DropTable(
+                name: "Cities");
 
             migrationBuilder.DropTable(
                 name: "States");

@@ -1,5 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace eTickets.Models
 {
@@ -26,5 +27,6 @@ namespace eTickets.Models
         public virtual Producer Producer { get; set; } = null!;
 
         public virtual ICollection<Actor> Actors { get; set; }
+       
     }
 }

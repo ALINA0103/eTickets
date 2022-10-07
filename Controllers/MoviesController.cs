@@ -15,8 +15,8 @@ namespace eTickets.Controllers
         
         private readonly AppDbContext _context;
 
-       
-       
+        
+
         public MoviesController(AppDbContext context)
         {
 
@@ -24,11 +24,11 @@ namespace eTickets.Controllers
         }
 
         [HttpGet]
-        
+       
         public async Task<IActionResult> Index(string SerachString)
         {
-            
-            if(SerachString != null)
+
+            if (SerachString != null)
             {
                 var allmovies = await _context.Movies.Where(x => x.Name.ToLower().Contains(SerachString.ToLower())).ToListAsync();
                 return View(allmovies);
@@ -56,7 +56,7 @@ namespace eTickets.Controllers
                 AdminLogin us = new AdminLogin
                 {
                     UserName = model.UserName,
-                   Password = model.Password,
+                    Password = model.Password,
 
                 };
 
@@ -80,7 +80,7 @@ namespace eTickets.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+
                 var data = _context.AdminLogins.Any(x => x.UserName == model.UserName && x.Password == model.Password);
                 if (data)
                 {
@@ -112,7 +112,7 @@ namespace eTickets.Controllers
                 return View(model);
             }
         }
-       
+
         public async Task<IActionResult> Details(int id)
         {
 
@@ -121,6 +121,21 @@ namespace eTickets.Controllers
 
 
 
+        }
+        public async Task<IActionResult> Filter(string searchString)
+        {
+            var allMovies = await _context.Movies.ToListAsync();
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                var filteredResult = allMovies.Where(n => n.Name.ToLower().Contains(searchString.ToLower()) || n.Description.ToLower().Contains(searchString.ToLower())).ToList();
+
+                var filteredResultNew = allMovies.Where(n => string.Equals(n.Name, searchString, StringComparison.CurrentCultureIgnoreCase) || string.Equals(n.Description, searchString, StringComparison.CurrentCultureIgnoreCase)).ToList();
+
+                return View("Index", filteredResultNew);
+            }
+
+            return View("Index", allMovies);
         }
 
     }

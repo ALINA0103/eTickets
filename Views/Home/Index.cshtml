@@ -1,31 +1,66 @@
-﻿@model eTickets.ViewModel.ContriesViewModel
+﻿@model eTickets.Data.ViewModel.CascadingModel
 
 @{
-    ViewData["title"] = "Index";
+    Layout = null;
 }
-<label asp-for="CountryName" Country_Name"></label>
+ 
 
-<select id="id" name="countrylist" asp-for="CountryId" asp-items='@Model.cotries'>
-    <option>select country name</option>
-</select>
-@*@Html.DropDownListFor(m=>m.Country_Name,ViewBag.Countries,"Select Count")*@
+<html>
 
-  <select id="state_id" name="statelist" asp-for="CountryName" asp-items='@Model.cotries'>
-    <option>select state name</option>
-</select>
-<script>
-$("#country_id").change(function() {
-    var url = '@Url.Content("~/")' + "Home/getstatebyid";
-    var ddlsource = "#country_id";
-    $.getjson(url, { id: $(ddlsource).val() }, function(date) {
-        var items = '';
-        $("state_id").empty();
-        $.each(data, function(i, row)){
-            items += "<option value='" + row.value + "'>" + row.text + "</option>";
+<body>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        @Html.DropDownListFor(m => m.Country_id, Model.Countries, "Please select country", new { onchange = "GetStateList()" })
+        <br/>
+        <br/>
+  
+        @Html.DropDownListFor(m => m.StateId, Model.States, "Please select state", new { onchange = "GetStateList()" })
+        <br/>
+        <br/>
+  
+        @Html.DropDownListFor(m => m.CityId, Model.Cities, "Please select City", new { onchange = "GetCityList()" })
+        <br/>
+        <br/>
+
+        
+        <input type="submit" value="Submit"/>
+    }
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   @* <script rel="javascript" type="text/javascript" href="js/jquery-1.11.3.min.js"/></script>*@
+    <script type="text/javascript">
+$(document).ready(function() {
+    $("#Country_id").change(function() {
+        $.get("/Home/GetStateList", { Country_id: $("#Country_id").val()}, function (data) {
+            $("#StateId").empty()
+            $.each(data, function(GetStateList, row) {
+              console.log(data)
+               $("#StateId").append("<option value='" + row.stateId + "'>" + row.stateName + "</option")
+                
+            });
+            
         });
-    $("#state_id").html(items);
-    })
-
+        GetStateList();
+    });
 });
-   });
-</script>
+$(document).ready(function() {
+    $("#StateId").change(function() {
+        $.get("/Home/GetCityList", { StateId: $("#StateId").val()}, function (data) {
+            $("#CityId").empty()
+            $.each(data, function(GetCityList, row) {
+              console.log(data)
+               $("#CityId").append("<option value='" + row.cityId + "'>" + row.cityName + "</option")
+                
+            });
+            
+        });
+        GetCityList();
+    });
+});
+ 
+ 
+           
+          
+    </script>  
+               
+</body>
+</html>

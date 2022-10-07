@@ -1,6 +1,7 @@
 ﻿using eTickets.Data;
 using eTickets.Data.Services;
 using eTickets.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting.Internal;
 
@@ -24,11 +25,13 @@ namespace eTickets.Controllers
             var data = await _service.GetAllAsync();
             return View(data);
         }
+      
         public IActionResult Create()
         {
             return View();
         }
         [HttpPost]
+        
         public async Task<IActionResult> Create(Actorvm avm)
         {
             var k = ProcessUploadFile(avm);
@@ -62,6 +65,7 @@ namespace eTickets.Controllers
             return uniqueFileName;
         }
 
+        
         public async Task<IActionResult> Details(Actorvm avm, int id)
         {
             var k = ProcessUploadFile(avm);
