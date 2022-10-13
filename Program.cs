@@ -2,7 +2,7 @@ using eTickets.Data;
 using eTickets.Data.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 
 System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
@@ -15,9 +15,9 @@ builder.Services.AddSession(options =>
 });
 builder.Services.AddMemoryCache();
 
+builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-
-
+builder.Services.AddScoped<IActorService, ActorsService>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
@@ -34,13 +34,6 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"));
 });
 builder.Services.AddControllersWithViews();
-
-
-
-builder.Services.AddScoped<IActorService, ActorsService>();
-
-
-
 
 var app = builder.Build();
 
@@ -62,7 +55,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller= Movies}/{action=UserLogin}/{id?}");
 
 
 

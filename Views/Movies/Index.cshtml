@@ -25,7 +25,7 @@
                     <div class="col-md-6">
                         <div class="card-body">
                             <p class="card-text">@item.Description</p>
-                            <p class="card-text"><b>Cinema: </b>@item.Cinema.Name</p>
+                            @*<p class="card-text"><b>Cinema: </b>@item.Cinema.Name</p>*@
                             <p class="card-text"><b>Category: </b>@item.MovieCategory</p>
                             <p class="card-text"><b>Start Date: </b>@item.StartDate.ToString("dd MMM yy")</p>
                             <p class="card-text"><b>End Date: </b>@item.EndDate.ToString("dd MMM yy")</p>
@@ -52,7 +52,16 @@
                                 <a class="btn btn-outline-primary float-right" asp-action="Details" asp-route-id="@item.Id">
                                     <i class="bi bi-eye-fill"></i> Show Details
                                 </a>
-                                <a class="btn btn-success text-white"><i class="bi bi-cart-plus"></i> Add to Cart (Price @item.Price.ToString())</a>
+                                @*<a class="btn btn-success text-white"><i class="bi bi-cart-plus"></i> Add to Cart (Price @item.Price.ToString())</a>*@
+                                @*<a class="btn btn-outline-primary float-right" asp-action="AddToCart" asp-route-id="@item.Id" asp-action="AddToCart" asp-route-MinusOrPlus="0"><i class=bi bi-cart-plus"></i>-</a> 
+                                    <a class="btn btn-outline-primary float-right" asp-action="AddToCart" asp-route-id="@item.Id"
+                                <input type = "button" name=" AddToCart" value=" Add to Cart" class="btn btn-primary" itemid="item.itemid" id="btnAddTocart" onclick="AddToCart(this)"/></a>
+                                 <input type = "number" placeholder="enter qty" min="1" max="10" name="qty"/>*@
+               
+                                <a class="btn btn-success text-white" asp-route-id="@item.Id" asp-controller="Movies" asp-action="AddToCart" asp-route-MinusOrPlus="0"><i class=bi bi-cart-plus"></i>-</a> 
+                                <a class="btn btn-success text-white" asp-route-id="@item.Id" asp-controller ="Movies" asp-action ="AddToCart" asp-route-MinusOrPlus="1"><i class="bi bi-cart-plus"></i>Add to Cart(Price @item.Price.ToString())</a>
+                                <a class="btn btn-success text-white" asp-route-id="@item.Id" asp-controller="Movies" asp-action="AddToCart" asp-route-MinusOrPlus="1"><i class=bi bi-cart-plus"></i>+</a> 
+                            
                             </p>
                         </div>
                     </div>

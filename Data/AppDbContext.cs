@@ -1,4 +1,5 @@
 ﻿using eTickets.Controllers;
+using eTickets.Data.ViewModel;
 using eTickets.Models;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -42,10 +43,10 @@ namespace eTickets.Data
         public DbSet<State> States { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<City> Cities { get; set; }
-
-        internal Task GetAllAsync(Func<object, object> value)
-        {
-            throw new NotImplementedException();
-        }
+        public DbSet<ShoppingCartModel> ShoppingCartModel { get; set; }
+        public DbSet<Cart> Cart { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserLogins> UserLogin { get; set; }
+        
     }
 }

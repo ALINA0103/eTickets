@@ -1,8 +1,8 @@
 ﻿
 
-namespace eTickets
-{
-    public class WebRoleProvider : RoleProvider
-    {
-    }
-}
+//namespace eTickets
+//{
+//    public class WebRoleProvider : RoleProvider
+//    {
+//    }
+//}

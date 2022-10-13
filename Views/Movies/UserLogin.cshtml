@@ -1,28 +1,26 @@
-﻿@model eTickets.Models.AdminLogin
+﻿@model eTickets.Models.UserLogins
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "UserLogin";
     
 }
  <br>  @ViewBag.ErrorMessage <br/>
 
- <h1 align ="center">Admin Login</h1>
-
-
+ <h1 align="Center">Login Panel</h1>
 <div class="container">
     <div class="row mt-lg-5">
         <div class="col-4 offset-4 border border-primary rounded p1-5 pr-5 pb-5">
            
-            <form method="post" asp-controller="Movies" asp-action="Login">
+            <form method="post" asp-controller="Movies" asp-action="UserLogin">
                 <div class="form-group">
-                <label asp-for="UserName" class="control-label"></label>
-                <input asp-for="UserName" class="form-control" />
+                <label asp-for="User_Name" class="control-label"></label>
+                <input asp-for="User_Name" class="form-control" />
                 
 
                 <span class="text-danger">@TempData["errorMessage"]</span>
             </div>
                <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
+                <label asp-for="password" class="control-label"></label>
+                <input asp-for="password" class="form-control" />
                  <span class="text-danger">@TempData["errorPassword"]</span>
             </div>
                 <div class="form-group">
@@ -30,8 +28,8 @@
                 </div>
             </form>
             <div class="text-center">
-                <a class="text-primary" asp-action="ForgotUserName">Forgot UserName?</a> 
-                <a class="text-primary" asp-action="ForgotPassword">Forgot Password?</a> 
+                <a class="text-primary" asp-action="ForgotUserName">Forgot User_Name?</a> 
+                <a class="text-primary" asp-action="ForgotPassword">Forgot password?</a> 
 
             </div>
         </div>

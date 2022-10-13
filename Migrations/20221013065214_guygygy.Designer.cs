@@ -12,8 +12,8 @@ using eTickets.Data;
 namespace eTickets.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220929053923_ohk")]
-    partial class ohk
+    [Migration("20221013065214_guygygy")]
+    partial class guygygy
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,6 +38,28 @@ namespace eTickets.Migrations
                     b.HasIndex("MoviesId");
 
                     b.ToTable("ActorMovie");
+                });
+
+            modelBuilder.Entity("eTickets.Data.ViewModel.ShoppingCartModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ShoppingCartModel");
                 });
 
             modelBuilder.Entity("eTickets.Models.Actor", b =>
@@ -97,6 +119,28 @@ namespace eTickets.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AdminLogins");
+                });
+
+            modelBuilder.Entity("eTickets.Models.Cart", b =>
+                {
+                    b.Property<int>("CartId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartId"));
+
+                    b.Property<int>("MoviesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("User_Id")
+                        .HasColumnType("int");
+
+                    b.HasKey("CartId");
+
+                    b.ToTable("Cart");
                 });
 
             modelBuilder.Entity("eTickets.Models.Cinema", b =>
@@ -262,6 +306,47 @@ namespace eTickets.Migrations
                     b.ToTable("States");
                 });
 
+            modelBuilder.Entity("eTickets.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("eTickets.Models.UserLogins", b =>
+                {
+                    b.Property<int>("User_Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("User_Id"));
+
+                    b.Property<string>("User_Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("User_Id");
+
+                    b.ToTable("UserLogin");
+                });
+
             modelBuilder.Entity("ActorMovie", b =>
                 {
                     b.HasOne("eTickets.Models.Actor", null)
@@ -280,7 +365,7 @@ namespace eTickets.Migrations
             modelBuilder.Entity("eTickets.Models.Actor_Movie", b =>
                 {
                     b.HasOne("eTickets.Models.Actor", "Actor")
-                        .WithMany()
+                        .WithMany("Actors_Movies")
                         .HasForeignKey("ActorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -299,7 +384,7 @@ namespace eTickets.Migrations
             modelBuilder.Entity("eTickets.Models.City", b =>
                 {
                     b.HasOne("eTickets.Models.State", "State")
-                        .WithMany()
+                        .WithMany("Cities")
                         .HasForeignKey("StateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -343,6 +428,11 @@ namespace eTickets.Migrations
                     b.Navigation("Country");
                 });
 
+            modelBuilder.Entity("eTickets.Models.Actor", b =>
+                {
+                    b.Navigation("Actors_Movies");
+                });
+
             modelBuilder.Entity("eTickets.Models.Cinema", b =>
                 {
                     b.Navigation("Movies");
@@ -361,6 +451,11 @@ namespace eTickets.Migrations
             modelBuilder.Entity("eTickets.Models.Producer", b =>
                 {
                     b.Navigation("Movies");
+                });
+
+            modelBuilder.Entity("eTickets.Models.State", b =>
+                {
+                    b.Navigation("Cities");
                 });
 #pragma warning restore 612, 618
         }

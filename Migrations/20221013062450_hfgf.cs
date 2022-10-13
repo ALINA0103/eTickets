@@ -5,25 +5,24 @@
 namespace eTickets.Migrations
 {
     /// <inheritdoc />
-    public partial class plus : Migration
+    public partial class hfgf : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<bool>(
-                name: "Movies",
-                table: "Movies",
-                type: "bit",
-                nullable: false,
-                defaultValue: false);
+            migrationBuilder.RenameColumn(
+                name: "UserId",
+                table: "UserLogin",
+                newName: "User_Id");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "Movies",
-                table: "Movies");
+            migrationBuilder.RenameColumn(
+                name: "User_Id",
+                table: "UserLogin",
+                newName: "UserId");
         }
     }
 }

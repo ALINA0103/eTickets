@@ -1,0 +1,33 @@
+﻿@model eTickets.Models.ViewCartVC
+
+@{
+    ViewData["Title"] = "List of the item";
+}
+<div class="row">
+    <table class="table">
+            <thead>
+                <tr>
+                <th>Id</th>
+                <th>Price</th>
+                <th>ImageUrl</th>
+                <th>Quantity</th>
+                <th>TotalPrice</th>
+                
+                </tr>
+    </thead>
+<tbody>
+  
+        @foreach(var item in Model.Movies)
+        {
+  <tr>
+      <td>@item.Id</td>
+      <td>@item.Quantity</td>
+      <td>img src="/Image/@item." style="width:50px;height:50px;"/></td>
+      <td>@item.Quantity</td>
+      <td>@item.TotalPrice</td>
+  </tr>
+}
+   }
+</tbody>
+</table>
+</div>
